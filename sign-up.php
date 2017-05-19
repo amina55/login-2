@@ -1,7 +1,9 @@
 <?php
 session_start();
 $message = '';
+echo "in page";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo "Welcome in post request";
 try{
     if ($_POST["captcha"] == $_SESSION["captcha_code"]) {
         $name = trim($_POST['name']);
@@ -65,6 +67,7 @@ include "master.php" ?>
             var valid;
             valid = validateContact();
             if (valid) {
+                alert('form is going to submit');
                 $('#signup-form').submit();
             }
         }
@@ -106,7 +109,7 @@ include "master.php" ?>
     </div>
 
     <div class="login-body">
-        <form id="signup-form" method="post" action="" accept-charset="UTF-8" class="form-horizontal form-login">
+        <form id="signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" accept-charset="UTF-8" class="form-horizontal form-login">
             <div class="form-group ">
                 <div id="signup-status" class="col-sm-12">
                     <?php echo $message; ?>

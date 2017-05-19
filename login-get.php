@@ -70,7 +70,7 @@ try{
     </div>
 
     <div class="login-body">
-        <form id="login-form" method="post" action="" class="form-horizontal form-login">
+        <form id="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="form-horizontal form-login">
             <div class="form-group ">
                 <div id="login-status" class="col-sm-12">
                     <?php echo $message; ?>
