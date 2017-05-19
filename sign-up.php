@@ -1,11 +1,11 @@
 <?php
 session_start();
 $message = '';
-echo "in page";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Welcome in post request";
 try{
     if ($_POST["captcha"] == $_SESSION["captcha_code"]) {
+        echo "in captcha code";
         $name = trim($_POST['name']);
         $username = trim($_POST['username']);
         $email = trim($_POST['email']);
@@ -15,19 +15,28 @@ try{
         if (empty($name) || empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
             $message = "<p class='error'>Required Parameter is missing</p>";
         } else {
+            echo "after required field checking <br>";
             if($password != $confirmPassword) {
                 $message = "<p class='error'>Please verify Password and Confirm Password.</p>";
             } else {
+                echo "after password = confirm pwd field checking <br>";
+
                 include "database_access.php";
                 if (!$connection) {
                     $message = "<p class='error'>Connection Failed.</p>";
                 } else {
+                    echo "after database connection <br>";
+
                     if( !preg_match('^(?=.*\d)(?=.*?[a-zA-Z])(?=.*?[\W_]).{6,10}$^', $password) || strlen( $password) < 6) {
                         $message = "<p class='error'>Password length should be 6-20 characters and contain at-least one digit, upper or lowercase letter and at-least one special character.</p>";
                     } else {
+                        echo "after password field checking <br>";
+
                         $repeat = '';
                         $query = "select * from users where username = '$username' or email = '$email'";
+                        echo $query;
                         $users = $connection->query($query);
+
                         foreach ($users as $user) {
                             if($user['email'] == $email) {
                                 $repeat = 'email';
@@ -37,9 +46,15 @@ try{
                         }
 
                         if(!$repeat) {
+                            echo "after email and username uniqueness checking checking <br>";
+
                             $password = hash('sha512', $password);
                             $insertQuery = "INSERT INTO users (name, username, email, password) VALUES  ('$name', '$username', '$email', '$password')";
                             $result = $connection->exec($insertQuery);
+
+                            echo $insertQuery;
+
+                            print_r($result);
                             if (!$result) {
                                 $message = "<p class='error'>Error in User Sign up</p>";
                             } else {
@@ -59,6 +74,8 @@ try{
     $message = "<p class='error'>Error : " . $e->getMessage() . "</p>";
 }
 }
+
+echo "<br> now load master file";
 
 include "master.php" ?>
 
