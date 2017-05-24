@@ -44,7 +44,8 @@ try{
                             if (!$result) {
                                 $message = "<p class='error'>Error in User Sign up</p>";
                             } else {
-                                $message = "<p class='alert-success'>Successfully User Registered.</p>";
+                                echo '<script>window.location = "login.php";</script>';
+                                exit();
                             }
                         } else {
                             $message = "<p class='error'>Username or Email should be unique. Please enter unique ".$repeat."</p>";
@@ -67,7 +68,6 @@ include "master.php" ?>
             var valid;
             valid = validateContact();
             if (valid) {
-                alert('form is going to submit');
                 $('#signup-form').submit();
             }
         }
