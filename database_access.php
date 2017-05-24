@@ -3,7 +3,7 @@
 $dbuser = 'Mac';
 $dbpass = 'root';
 $dbhost = 'localhost';
-$dbname='test';
+$dbname='srinagarhc';
 
 try {
     $connection = new PDO("pgsql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);

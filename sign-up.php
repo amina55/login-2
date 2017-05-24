@@ -44,7 +44,7 @@ try{
                             if (!$result) {
                                 $message = "<p class='error'>Error in User Sign up</p>";
                             } else {
-                                echo '<script>window.location = "login.php";</script>';
+                                echo '<script>window.location = "login-get.php";</script>';
                                 exit();
                             }
                         } else {
