@@ -3,7 +3,7 @@ session_start();
 $message = '';
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 try{
-    if ($_POST["captcha"] == $_SESSION["captcha_code"]) {
+    /*if ($_POST["captcha"] == $_SESSION["captcha_code"]) {*/
         $name = trim($_POST['name']);
         $username = trim($_POST['username']);
         $email = trim($_POST['email']);
@@ -53,9 +53,9 @@ try{
                 }
             }
         }
-    } else {
+    /*} else {
         $message = "<p class='error'>Enter Correct Captcha Code.</p>";
-    }
+    }*/
 }catch (Exception $e) {
     $message = "<p class='error'>Error : " . $e->getMessage() . "</p>";
 }
@@ -80,7 +80,7 @@ include "master.php" ?>
             var password = $("#password").val();
             var confirm_password = $("#confirm_password").val();
             var password_length = password.length;
-            var inputs = ['username', 'name', 'email', 'password', 'confirm_password', 'captcha'];
+            var inputs = ['username', 'name', 'email', 'password', 'confirm_password'];
             for (var i = 0 ; i < inputs.length ; i++ ) {
                 if (!$("#"+inputs[i]).val()) {
                     $("#"+inputs[i]).css('background-color', '#FFFFDF');
@@ -163,7 +163,7 @@ include "master.php" ?>
                 </div>
             </div>
 
-            <div class="form-group ">
+            <!--<div class="form-group ">
                 <div class="col-sm-12">
                     <label class="control-label mb10" for="captcha">
                         Captcha
@@ -173,7 +173,7 @@ include "master.php" ?>
                 </div>
             </div>
 
-            <?php include "captcha.php" ?>
+            --><?php /*include "captcha.php" */?>
 
             <div class="form-group" style="margin-bottom: 40px;">
                 <div class="col-sm-12">
