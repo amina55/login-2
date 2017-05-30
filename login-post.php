@@ -2,7 +2,6 @@
 session_start();
 $message = '';
 try{
-   /* if ($_POST["captcha"] == $_SESSION["captcha_code"]) {*/
         $userName = trim($_POST['username']);
         $password = trim($_POST['password']);
         if (empty($userName) || empty($password)) {
@@ -25,9 +24,6 @@ try{
                 }
             }
         }
-    /*} else {
-        $message = "<p class='error'>Enter Correct Captcha Code.</p>";
-    }*/
 }catch (Exception $e) {
     $message = "<p class='error'>Error : " . $e->getMessage() . "</p>";
 }

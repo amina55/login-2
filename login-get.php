@@ -65,17 +65,6 @@ $_SESSION['login-error'] = '';
                     <span class="error-message"></span>
                 </div>
             </div>
-            <!--<div class="form-group ">
-                <div class="col-sm-12">
-                    <label class="control-label mb10" for="captcha">
-                        Captcha
-                        <em class="required-asterik">*</em>
-                    </label>
-                    <input id="captcha" class="form-control" placeholder="Captcha" name="captcha" type="password" value="" required>
-                </div>
-            </div>
-
-            --><?php /*include "captcha.php" */?>
             <div class="form-group" style="margin-bottom: 40px;">
                 <div class="col-sm-12">
                     <input type="button" class="btn btn-global btn-global-thin text-uppercase" onclick="sendContact()" value="Log In">
