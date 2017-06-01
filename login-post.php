@@ -14,8 +14,9 @@ try{
                 $message = "<p class='error'>Connection Failed.</p>";
             } else {
                 $stmt = $connection->prepare('SELECT name, username FROM users WHERE username = :username AND password = :password');
-                $stmt->execute(['username' => $userName, 'password' => hash('sha512', $password)]);
-                $user = $stmt->fetch();
+                $hashedPassword = hash('sha512', $password);
+                $stmt->execute(array('username' => $userName, 'password' => $hashedPassword));
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (empty($user)) {
                     $message = "<p class='error'>User Name or Password is incorrect</p>";
                 } else {
